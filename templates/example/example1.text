@@ -1,0 +1,93 @@
+Today {{date}} at {{time}} me {{author}}
+
+
+Example:
+
+Module: {{moduleName}}
+
+class {{className}}Class {
+
+{{#fields}}
+    {{type}} {{name}}{{#K}}{{#lower}}{{type}}{{/lower}}DefaultValue{{/K}};
+{{/fields}}
+
+{{#fields}}
+    {{type}} get{{name}}(){
+        return {{name}};
+    }
+    {{type}} set{{name}}(){
+        return {{name}};
+    }
+{{/fields}}
+
+}
+
+
+
+{{#log}}Hi, {{author}}{{/log}}
+
+Count:
+{{#repeat9}}{{#C}}{{/C}}{{#C+}}{{/C+}},{{/repeat9}}
+
+
+
+
+Tabulate:
+{{#tabL}}
+<html>
+{{/tabL}}
+{{#tab2L}}
+<body>
+{{/tab2L}}
+{{#tab3L}}
+<h1>{{#upper}}Hi world!{{/upper}}</h1>
+{{/tab3L}}
+{{#tab2L}}
+</body>
+{{/tab2L}}
+{{#tabL}}
+</html>
+{{/tabL}}
+
+{{#removeDuplicateL}}
+Remove duplicate lines
+Remove duplicate lines
+Remove all duplicate lines
+Remove duplicate lines
+{{/removeDuplicateL}}
+
+
+Sort:
+*
+{{#sortAscL}}
+line c
+line z
+line b
+line c2
+line a
+{{/sortAscL}}
+*
+
+{{#names}}
+{{.}}
+plural: {{#plural}}{{.}}{{/plural}}
+camel: {{#camel}}{{.}}{{/camel}}
+capital: {{#capital}}{{.}}{{/capital}}
+decapital: {{#decapital}}{{.}}{{/decapital}}
+dash: {{#dash}}{{.}}{{/dash}}
+snake: {{#snake}}{{.}}{{/snake}}
+swap: {{#swap}}{{.}}{{/swap}}
+title: {{#title}}{{.}}{{/title}}
+lower: {{#lower}}{{.}}{{/lower}}
+upper: {{#upper}}{{.}}{{/upper}}
+
+{{/names}}
+
+
+{{#delDuplicateSpaces}}Hello  world!!!  {{author}}{{/delDuplicateSpaces}}
+
+{{#joinL}}
+Hello
+ world
+!
+{{/joinL}}

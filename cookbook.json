@@ -1,0 +1,5 @@
+{	
+	"intDefaultValue": " = 0",
+	"dateDefaultValue": " = new Date()",
+	"stringDefaultValue": " = ''"
+}

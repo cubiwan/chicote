@@ -1,0 +1,21 @@
+{
+    "vars":[
+        ["filename1", "exampleA-{{timestamp}}.code"],
+        ["filename2", "exampleB-{{timestamp}}.code"],
+        ["className", "{{#capital}}{{name}}{{/capital}}"],
+        ["varName", "{{#decapital}}{{name}}{{/decapital}}"],
+        ["moduleName", "{{#dash}}{{name}}Module{{/dash}}"]
+    ],	
+    "directories":[
+        "example/example1",
+        "example/example2",
+        "examples/example1/example2"
+    ],
+    "templates":[
+        ["example/example1.text", "text.txt"],
+        ["example/example1.text", "example/example1/{{filename1}}"],
+        ["example/example2.text", "example/example2/{{filename2}}"],
+        ["example/example1.text", "examples/example1/{{filename1}}"],
+        ["example/example2.text", "examples/example1/example2/{{filename2}}"]
+    ]
+}

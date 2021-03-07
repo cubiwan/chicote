@@ -1,0 +1,12 @@
+{	
+    "name": "Test",
+	"author": "Bob",
+	"fields": [
+		{"name": "id", "type": "int"},
+		{"name": "firstname", "type": "String"},
+		{"name": "lastname", "type": "String"},
+		{"name": "birthday", "type": "date"}
+	],
+	"names": ["HelloWorld", "helloWorld", "hello-world"],
+	"steps": ["example"]
+}

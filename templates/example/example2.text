@@ -1,0 +1,18 @@
+Today {{date}} at {{time}} me {{author}}
+
+
+Module: {{moduleName}}
+
+class {{className}}Class {
+    {{type}} {{name}} {{#K}}{{type}}{{/K}};
+
+    {{type}} get{{name}}(){
+        return {{name}};
+    }
+
+    {{type}} set{{name}}(){
+        return {{name}};
+    }
+
+
+}
