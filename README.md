@@ -1,4 +1,5 @@
-# chicote
+# chicote      <a href='https://ko-fi.com/I2I012UF3' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
 
 Agnostic template engine code generator
 
@@ -39,7 +40,7 @@ Steps are where you prepare ingredients. One step have three parts: vars, direct
 
 Example of step
 ```javascript
-{
+{-
     "vars":[
         ["filename1", "exampleA-{{timestamp}}.code"],
         ["filename2", "exampleB-{{timestamp}}.code"],
