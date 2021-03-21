@@ -130,6 +130,10 @@
   };
 
   Context.prototype.lookup = function (name) {
+    if(name.indexOf("|") > 0){
+      let split = name.split("|");
+      name = split[0];
+    }
     var value = this._cache[name];
 
     if (!value) {
@@ -245,10 +249,16 @@
             buffer += renderTokens(token[4], writer, context.push(value), template);
           }
         } else if (typeof value === 'function') {
+          let paramsFunc;
+          if(tokenValue.indexOf("|") > 0){
+            let split = tokenValue.split("|");
+            tokenValue = split[0];
+            paramsFunc = split[1];
+          }
           var text = template == null ? null : template.slice(token[3], token[5]);
           value = value.call(context.view, text, function (template) {
             return writer.render(template, context);
-          });
+          }, paramsFunc);
           if (value != null) buffer += value;
         } else if (value) {
           buffer += renderTokens(token[4], writer, context, template);
