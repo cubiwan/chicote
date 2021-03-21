@@ -134,7 +134,7 @@ Templates uses mustache syntaxis but with a few "special tags":
 Example:
   
 ```
-**Hello world**
+Hello world
 plural: Hello worlds
 camel: helloWorld
 capital: Hello world
@@ -150,7 +150,7 @@ slug: hello-world
 count: 11
 countWords: 2
 
-**HelloWorld**
+HelloWorld
 plural: HelloWorlds
 camel: helloWorld
 capital: HelloWorld
@@ -166,7 +166,7 @@ slug: hello-world
 count: 10
 countWords: 2
 
-**helloWorld**
+helloWorld
 plural: helloWorlds
 camel: helloWorld
 capital: HelloWorld
@@ -182,7 +182,7 @@ slug: hello-world
 count: 10
 countWords: 2
 
-**hello-world**
+hello-world
 plural: hello-worlds
 camel: helloWorld
 capital: Hello-world
@@ -198,7 +198,7 @@ slug: hello-world
 count: 11
 countWords: 2
 
-**helloworld**
+helloworld
 plural: helloworlds
 camel: helloworld
 capital: Helloworld
