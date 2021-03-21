@@ -1,0 +1,26 @@
+[
+{	
+    "name": "Test",
+	"author": "Bob",
+	"fields": [
+		{"name": "id", "type": "int"},
+		{"name": "firstname", "type": "String"},
+		{"name": "lastname", "type": "String"},
+		{"name": "birthday", "type": "date"}
+	],
+	"names": ["Hello world", "HelloWorld", "helloWorld", "hello-world", "helloworld"],
+	"steps": ["example"]
+},
+{	
+    "name": "Test",
+	"author": "Bob",
+	"fields": [
+		{"name": "id", "type": "int"},
+		{"name": "firstname", "type": "String"},
+		{"name": "lastname", "type": "String"},
+		{"name": "birthday", "type": "date"}
+	],
+	"names": ["Hello world", "HelloWorld", "helloWorld", "hello-world", "helloworld"],
+	"steps": ["example"]
+}
+]
