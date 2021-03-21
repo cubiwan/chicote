@@ -1,5 +1,6 @@
 Today {{date}} at {{time}} me {{author}}
 
+{{!This is a comment}}.
 
 Example:
 
@@ -22,43 +23,51 @@ class {{className}}Class {
 
 }
 
-
-
 {{#log}}Hi, {{author}}{{/log}}
 
-Count:
-{{#repeat9}}{{#C}}{{/C}}{{#C+}}{{/C+}},{{/repeat9}}
+Count:{{#C=|0}}{{/C=|0}}
+{{#repeat|9}}{{#C}}{{/C}}{{#C+}}{{/C+}},{{/repeat|9}}
 
+{{#repeat|3}}{{#C}}{{/C}}{{#C+}}{{/C+}},{{/repeat|3}}
 
+{{#C=|0}}{{/C=|0}}
+
+{{#delLast|,}}{{#repeat|9}}{{#C}}{{/C}}{{#C+}}{{/C+}},{{/repeat|9}}{{/delLast|,}}
+
+{{#C=|100}}{{/C=|100}}
+
+{{#delLast|-:-}}{{#repeat|9}}{{#C}}{{/C}}{{#C+}}{{/C+}}-:-{{/repeat|9}}{{/delLast|-:-}}
 
 
 Tabulate:
-{{#tabL}}
+{{#tabL|1}}
 <html>
-{{/tabL}}
-{{#tab2L}}
+{{/tabL|1}}
+{{#tabL|2}}
 <body>
-{{/tab2L}}
-{{#tab3L}}
+{{/tabL|2}}
+{{#tabL|3}}
 <h1>{{#upper}}Hi world!{{/upper}}</h1>
-{{/tab3L}}
-{{#tab2L}}
+{{/tabL|3}}
+{{#tabL|2}}
 </body>
-{{/tab2L}}
-{{#tabL}}
+{{/tabL|2}}
+{{#tabL|1}}
 </html>
-{{/tabL}}
+{{/tabL|1}}
 
-{{#removeDuplicateL}}
+{{#delEmptyL}}
+{{#delDuplicateL}}
 Remove duplicate lines
 Remove duplicate lines
 Remove all duplicate lines
 Remove duplicate lines
-{{/removeDuplicateL}}
-
+{{/delDuplicateL}}
+{{/delEmptyL}}
 
 Sort:
 *
+{{#delEmptyL}}
 {{#sortAscL}}
 line c
 line z
@@ -66,7 +75,14 @@ line b
 line c2
 line a
 {{/sortAscL}}
+{{/delEmptyL}}
 *
+
+{{#addEndL|)}}{{#addStartL|(}}Line 1
+Line 2
+Line 3
+Line 4
+Line 5{{/addStartL|(}}{{/addEndL|)}}
 
 {{#names}}
 {{.}}
@@ -80,11 +96,15 @@ swap: {{#swap}}{{.}}{{/swap}}
 title: {{#title}}{{.}}{{/title}}
 lower: {{#lower}}{{.}}{{/lower}}
 upper: {{#upper}}{{.}}{{/upper}}
+escHtml: {{#escHtml}}{{.}}{{/escHtml}}
+slug: {{#slug}}{{.}}{{/slug}}
+count: {{#count}}{{.}}{{/count}}
+countWords: {{#countWords}}{{.}}{{/countWords}}
 
 {{/names}}
 
 
-{{#delDuplicateSpaces}}Hello  world!!!  {{author}}{{/delDuplicateSpaces}}
+{{#delDuplicateSpaces}}Hello               world!!!  {{author}}{{/delDuplicateSpaces}}
 
 {{#joinL}}
 Hello
