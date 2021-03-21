@@ -1,18 +1,113 @@
 Today {{date}} at {{time}} me {{author}}
 
+{{!This is a comment}}.
+
+Example:
 
 Module: {{moduleName}}
 
 class {{className}}Class {
-    {{type}} {{name}} {{#K}}{{type}}{{/K}};
 
-    {{type}} get{{name}}(){
+{{#fields}}
+    {{type}} {{name}}{{#K}}{{#lower}}{{type}}{{/lower}}DefaultValue{{/K}};
+{{/fields}}
+
+{{#fields}}
+    {{type}} get{{#capital}}{{name}}{{/capital}}(){
         return {{name}};
     }
-
-    {{type}} set{{name}}(){
+    {{type}} set{{#capital}}{{name}}{{/capital}}(){
         return {{name}};
     }
-
+{{/fields}}
 
 }
+
+{{#log}}Hi, {{author}}{{/log}}
+
+Count:{{#C=|0}}{{/C=|0}}
+{{#repeat|9}}{{#C}}{{/C}}{{#C+}}{{/C+}},{{/repeat|9}}
+
+{{#repeat|3}}{{#C}}{{/C}}{{#C+}}{{/C+}},{{/repeat|3}}
+
+{{#C=|0}}{{/C=|0}}
+
+{{#delLast|,}}{{#repeat|9}}{{#C}}{{/C}}{{#C+}}{{/C+}},{{/repeat|9}}{{/delLast|,}}
+
+{{#C=|100}}{{/C=|100}}
+
+{{#delLast|-:-}}{{#repeat|9}}{{#C}}{{/C}}{{#C+}}{{/C+}}-:-{{/repeat|9}}{{/delLast|-:-}}
+
+
+Tabulate:
+{{#tabL|1}}
+<html>
+{{/tabL|1}}
+{{#tabL|2}}
+<body>
+{{/tabL|2}}
+{{#tabL|3}}
+<h1>{{#upper}}Hi world!{{/upper}}</h1>
+{{/tabL|3}}
+{{#tabL|2}}
+</body>
+{{/tabL|2}}
+{{#tabL|1}}
+</html>
+{{/tabL|1}}
+
+{{#delEmptyL}}
+{{#delDuplicateL}}
+Remove duplicate lines
+Remove duplicate lines
+Remove all duplicate lines
+Remove duplicate lines
+{{/delDuplicateL}}
+{{/delEmptyL}}
+
+Sort:
+*
+{{#delEmptyL}}
+{{#sortAscL}}
+line c
+line z
+line b
+line c2
+line a
+{{/sortAscL}}
+{{/delEmptyL}}
+*
+
+{{#addEndL|)}}{{#addStartL|(}}Line 1
+Line 2
+Line 3
+Line 4
+Line 5{{/addStartL|(}}{{/addEndL|)}}
+
+{{#names}}
+{{.}}
+plural: {{#plural}}{{.}}{{/plural}}
+camel: {{#camel}}{{.}}{{/camel}}
+capital: {{#capital}}{{.}}{{/capital}}
+decapital: {{#decapital}}{{.}}{{/decapital}}
+dash: {{#dash}}{{.}}{{/dash}}
+snake: {{#snake}}{{.}}{{/snake}}
+swap: {{#swap}}{{.}}{{/swap}}
+title: {{#title}}{{.}}{{/title}}
+lower: {{#lower}}{{.}}{{/lower}}
+upper: {{#upper}}{{.}}{{/upper}}
+escHtml: {{#escHtml}}{{.}}{{/escHtml}}
+slug: {{#slug}}{{.}}{{/slug}}
+count: {{#count}}{{.}}{{/count}}
+countWords: {{#countWords}}{{.}}{{/countWords}}
+
+{{/names}}
+
+
+{{#delDuplicateSpaces}}Hello               world!!!  {{author}}{{/delDuplicateSpaces}}
+
+{{#joinL}}
+Hello
+ world
+!
+{{/joinL}}

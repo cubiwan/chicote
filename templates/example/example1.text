@@ -13,10 +13,10 @@ class {{className}}Class {
 {{/fields}}
 
 {{#fields}}
-    {{type}} get{{name}}(){
+    {{type}} get{{#capital}}{{name}}{{/capital}}(){
         return {{name}};
     }
-    {{type}} set{{name}}(){
+    {{type}} set{{#capital}}{{name}}{{/capital}}(){
         return {{name}};
     }
 {{/fields}}
