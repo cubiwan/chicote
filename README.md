@@ -11,14 +11,16 @@ Chicote need NodeJS to work. Use [mustache.js](https://github.com/janl/mustache.
 node cooking.js
 ```
 
-You need create a recipe.json, recipe contains all ingredients and steps. 
+You need create a recipes.json, recipes contains one or more recipes a recipe contains all ingredients and steps.
 
-* Ingredient is any value in json. Ingredients are accesible from templates.
-* Steps are an array with name "steps". Steps are json files in Step directory
+* Recipe is a complete description for one execution of chicote
+* Ingredient is any value in recipe json. Ingredients are accesible from templates.
+* Steps are an array with name "steps". An step is the name of a json file in step directory
 
 Example of recipe.json
 
 ```javascript
+[
 {	
     "name": "Test",
 	"author": "Bob",
@@ -30,7 +32,9 @@ Example of recipe.json
 	],
 	"names": ["HelloWorld", "helloWorld", "hello-world"],
 	"steps": ["example"]
-}
+},
+...
+]
 ```
 
 Steps are where you prepare ingredients. One step have three parts: vars, directories, templates
@@ -65,10 +69,10 @@ Example of step
 
 Templates uses mustache syntaxis but with a few "special tags":
 
-{{timestamp}} 
-{{date}}
-{{time}}
-{{GUID}}
+{{timestamp}}  
+{{date}}  
+{{time}}  
+{{GUID}}  
 
 {{#plural}}text{{/plural}}  
 {{#camel}}text{{/camel}}  
@@ -80,7 +84,8 @@ Templates uses mustache syntaxis but with a few "special tags":
 {{#title}}text{{/title}}  
 {{#lower}}text{{/lower}}  
 {{#upper}}text{{/upper}}  
-
+{{#slug}}text{{/slug}} 
+{{#slug}}text{{/slug}}
 {{#reverse}}text{{/reverse}}  
 {{#stripTags}}text{{/stripTags}}  
 {{#escHtml}}text{{/escHtml}}  
@@ -89,50 +94,63 @@ Templates uses mustache syntaxis but with a few "special tags":
 {{#trim}}text{{/trim}}  
 {{#latin}}text{{/latin}}  
 
-{{#delSpaces}}text{{/delSpaces}}  
-{{#delDuplicateSpaces}}text{{/delDuplicateSpaces}}  
+{{#count}}text{{/count}} - remplace text for number of characters    
+{{#countWords}}text{{/countWords}}  - remplace text for number of words  
 
-{{#repeat2}}text{{/repeat2}} - repeat text  
-{{#repeat3}}text{{/repeat3}}  
-{{#repeat4}}text{{/repeat4}}  
-{{#repeat5}}text{{/repeat5}}  
-{{#repeat6}}text{{/repeat6}}  
-{{#repeat7}}text{{/repeat7}}   
-{{#repeat8}}text{{/repeat8}}  
-{{#repeat9}}text{{/repeat9}}  
+{{#delSpaces}}text{{/delSpaces}} - del all spaces  
+{{#delDuplicateSpaces}}text{{/delDuplicateSpaces}} - del duplicate spaces   
+{{#delLast|C}}text{{/delLast|C}} - del last C character coincidence  
+{{#delFirst|C}}text{{/delFirst|C}} - del first C character coincidence  
+{{#delEnd|N}}text{{/delEnd|N}} - del N characters from end  
+{{#delStart|N}}text{{/delStart|N}} - del N characters from start  
+  
+{{#repeat|N}}text{{/repeat2|N}} - repeat text N time  
   
 {{#sortAscL}}text{{/sortAscL}} - sort lines   
 {{#sortDescL}}text{{/sortDescL}} - sort lines  
 {{#trimL}}text{{/trimL}} - trim lines  
 {{#joinL}}text{{/joinL}} - join lines  
 {{#removeDuplicateL}}text{{/removeDuplicateL}} - remove duplicate lines  
-{{#spaceL}}text{{/spaceL}} -   
-{{#space2L}}text{{/space2L}}  
-{{#space4L}}text{{/space4L}}  
-{{#space8L}}text{{/space8L}}  
-{{#tabL}}text{{/tabL}}  
-{{#tab2L}}text{{/tab2L}}  
-{{#tab3L}}text{{/tab3L}}  
-{{#tab4L}}text{{/tab4L}}  
-{{#tab5L}}text{{/tab5L}}  
-{{#tab6L}}text{{/tab6L}}  
-  
+{{#spaceL|N}}text{{/spaceL|N}} - Add N space at beginning each line   
+{{#tabL|N}}text{{/tabL|N}} - Add N tabs at beginning each line  
+{{#addStartL|C}}text{{/addStartL|C}} - Add character C at beginning each line   
+{{#addEndL|C}}text{{/addEndL|C}} - Add character C at the end each line  
+
 {{#log}}text{{/log}} - write text in console   
   
 {{#R}}text{{/R}} - render text  
   
-{{#C0}}{{/C0}} - set counter = 0  
-{{#C+}}{{/C+}} - increase counter  
-{{#C-}}{{/C-}} - decrease counter  
+{{#C=|N}}{{/C=|N}} - set counter to N  
+{{#C+|N}}{{/C+|N}} - increase counter in N  
+{{#C-|N}}{{/C-|N}} - decrease counter in N  
 {{#C}}{{/C}} - print counter  
 
-{{#K}}text{{/K}}  - load data from knowledge database (cookbook.json)
-
-
+{{#K}}text{{/K}}  - load data from knowledge database (cookbook.json)  
+  
+{{!text}} - Comment  
+  
+{{=AA BB=}} - Change template characters from {{ }} to AA BB  
+  
 Example:
-
+  
 ```
-text: HelloWorld
+**Hello world**
+plural: Hello worlds
+camel: helloWorld
+capital: Hello world
+decapital: hello world
+dash: hello-world
+snake: hello_world
+swap: hELLO WORLD
+title: Hello World
+lower: hello world
+upper: HELLO WORLD
+escHtml: Hello world
+slug: hello-world
+count: 11
+countWords: 2
+
+**HelloWorld**
 plural: HelloWorlds
 camel: helloWorld
 capital: HelloWorld
@@ -143,8 +161,12 @@ swap: hELLOwORLD
 title: HelloWorld
 lower: helloworld
 upper: HELLOWORLD
+escHtml: HelloWorld
+slug: hello-world
+count: 10
+countWords: 2
 
-text: helloWorld
+**helloWorld**
 plural: helloWorlds
 camel: helloWorld
 capital: HelloWorld
@@ -155,8 +177,12 @@ swap: HELLOwORLD
 title: HelloWorld
 lower: helloworld
 upper: HELLOWORLD
+escHtml: helloWorld
+slug: hello-world
+count: 10
+countWords: 2
 
-text: hello-world
+**hello-world**
 plural: hello-worlds
 camel: helloWorld
 capital: Hello-world
@@ -167,6 +193,26 @@ swap: HELLO-WORLD
 title: Hello-World
 lower: hello-world
 upper: HELLO-WORLD
+escHtml: hello-world
+slug: hello-world
+count: 11
+countWords: 2
+
+**helloworld**
+plural: helloworlds
+camel: helloworld
+capital: Helloworld
+decapital: helloworld
+dash: helloworld
+snake: helloworld
+swap: HELLOWORLD
+title: Helloworld
+lower: helloworld
+upper: HELLOWORLD
+escHtml: helloworld
+slug: helloworld
+count: 10
+countWords: 1
 ```
 
 cookbook.js is a json file works as knowledge database, key value json file.
@@ -181,6 +227,7 @@ Example of cookbook.js:
 }
 ```
 
-
+  
+  
 
 ![chicote](chicote.png)
