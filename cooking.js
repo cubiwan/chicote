@@ -64,7 +64,6 @@ function addTools(input){
 	input["addStartL"] = functionToTagAfterRender(addStartL);
 	input["addEndL"] = functionToTagAfterRender(addEndL);
 
-
 	input["log"] = functionToTagAfterRender(log);
 
 	input["K"] = function() {
@@ -302,22 +301,21 @@ for(recipeIndex in recipes){
 	}
 
 	for (index in dirs) {
-		directories = directories.concat(extractPaths(dirs[index]));
+		directories = directories.concat(extractPaths(Mustache.render(dirs[index], recipe)));
 	}
 
 	for (index in directories) {
-		paths[directories[index]] = Mustache.render(directories[index], recipe);
-		if (!fs.existsSync("./output/"+paths[directories[index]])) {
-			console.log("Creating dir: "+paths[directories[index]]); 
-			fs.mkdirSync("./output/"+paths[directories[index]]);
+		if (!fs.existsSync("./output/"+directories[index])) {
+			console.log("Creating dir: "+directories[index]); 
+			fs.mkdirSync("./output/"+directories[index]);
 		}
 	}
 
 	for (index in templates){	
 		var file = fs.readFileSync("./templates/"+templates[index][0], "utf8");
-		var render = Mustache.render(file, recipe);
 		var filename = Mustache.render(templates[index][1], recipe);
 		console.log("Generating: " + filename);
+		var render = Mustache.render(file, recipe);
 		fs.writeFileSync("./output/"+filename, render, 'utf-8', function(err) {
 			if(err) {
 				console.log("Error saving "+filename+" -> "+err);
