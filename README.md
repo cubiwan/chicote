@@ -11,6 +11,8 @@ Chicote need NodeJS to work. Use [mustache.js](https://github.com/janl/mustache.
 node cooking.js
 ```
 
+## recipe.json
+
 You need create a recipes.json, recipes contains one or more recipes a recipe contains all ingredients and steps.
 
 * Recipe is a complete description for one execution of chicote
@@ -37,14 +39,16 @@ Example of recipe.json
 ]
 ```
 
-Steps are where you prepare ingredients. One step have three parts: vars, directories, templates
+## Steps
+
+One step is a JSON file in directory "steps" where you prepare ingredients. One step have three parts: vars, directories, templates  
 * vars are variables creates from ingredients. Work similar to ingredients
 * directories indicates directories to output
-* templates, files in template directory 
+* templates, text files in template directory 
 
 Example of step
 ```javascript
-{-
+{
     "vars":[
         ["filename1", "exampleA-{{timestamp}}.code"],
         ["filename2", "exampleB-{{timestamp}}.code"],
@@ -67,11 +71,19 @@ Example of step
 }
 ```
 
-Templates uses mustache syntaxis but with a few "special tags":
+## Templates
+
+Templates are text files in directory "templates" uses mustache syntaxis but with a few "special tags":
 
 {{timestamp}}  
-{{date}}  
-{{time}}  
+{{date}} - date in format yyyy-mm-dd
+{{time}} - time in format hh:mm:ss
+{{year}}
+{{month}}
+{{day}}
+{{year}}
+{{minute}}
+{{second}}
 {{GUID}}  
 
 {{#plural}}text{{/plural}}  
@@ -131,7 +143,7 @@ Templates uses mustache syntaxis but with a few "special tags":
   
 {{!text}} - Comment  
   
-{{=AA BB=}} - Change template characters from {{ }} to AA BB  
+
   
 Example:
   
@@ -470,6 +482,9 @@ Example:
 
 ```
 
+{{=AA BB=}} - Change template characters from {{ }} to AA BB  
+
+## cookbook.js
 
 cookbook.js is a json file works as knowledge database, key value json file.
 
@@ -483,7 +498,12 @@ Example of cookbook.js:
 }
 ```
 
-  
-  
+Example of use:  
+
+```javascript
+{#K}}{{#lower}}{{type}}{{/lower}}DefaultValue{{/K}}; //with type = "date" search dateDefaulValue in cookbook.js 
+```  
+
+## Diagram      
 
 ![chicote](chicote.png)
