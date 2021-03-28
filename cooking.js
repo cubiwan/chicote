@@ -21,6 +21,13 @@ function addTools(input){
 	input["timestamp"] = date.getTime();
 	input["date"] = date.toISOString().split('T')[0];
 	input["time"] = date.toISOString().split('T')[1].split('.')[0]
+	input["year"] = date.getFullYear();
+	input["month"] = ("00"+(date.getMonth()+1)).slice(-2);
+	input["day"] = ("00"+date.getDate()).slice(-2);
+	input["hour"] = ("00"+date.getHours()).slice(-2);
+	input["minute"] = ("00"+date.getMinutes()).slice(-2);
+	input["second"] = ("00"+date.getSeconds()).slice(-2);
+
 	input["GUID"] = createGuid();
 
 	input["plural"] = functionToTagAfterRender(plural);
@@ -93,11 +100,11 @@ function addTools(input){
 }
 
 function fakerFunction(text){
-	return eval("faker."+text.trim()+"()");	
+	return eval("faker."+text+"()");	
 }
 
 function evalFunction(text){
-	return eval(text.trim());	
+	return eval(text);	
 }
 
 function resetCounter(text, params){	
