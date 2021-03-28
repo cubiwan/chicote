@@ -84,8 +84,7 @@ Templates uses mustache syntaxis but with a few "special tags":
 {{#title}}text{{/title}}  
 {{#lower}}text{{/lower}}  
 {{#upper}}text{{/upper}}  
-{{#slug}}text{{/slug}} 
-{{#slug}}text{{/slug}}
+{{#slug}}text{{/slug}}  
 {{#reverse}}text{{/reverse}}  
 {{#stripTags}}text{{/stripTags}}  
 {{#escHtml}}text{{/escHtml}}  
