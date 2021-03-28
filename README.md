@@ -5,7 +5,7 @@ Agnostic template engine code generator
 
 (Chicote is a famous Spanish chef)
 
-Chicote need NodeJS to work. Use [mustache.js](https://github.com/janl/mustache.js), [pluralize](https://github.com/plurals/pluralize), [voca](https://github.com/panzerdp/voca) and [faker.js](https://github.com/Marak/faker.js). You don't need install anything, only download code and call cooking.js
+Chicote need NodeJS to work. Use [mustache.js](https://github.com/janl/mustache.js), [pluralize](https://github.com/plurals/pluralize), [voca](https://github.com/panzerdp/voca) and [faker.js](https://github.com/Marak/faker.js). You don't need install anything, only download code and execute cooking.js
 
 ```
 node cooking.js
