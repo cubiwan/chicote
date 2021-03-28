@@ -107,10 +107,10 @@ Templates uses mustache syntaxis but with a few "special tags":
 {{#repeat|N}}text{{/repeat2|N}} - repeat text N time  
   
 {{#sortAscL}}text{{/sortAscL}} - ascending sort lines   
-{{#sortDescL}}text{{/sortDescL}} - descending sort lines 
-{{#naturalSortAscL}}text{{/naturalSortAscL}} - ascending natural sort lines
-{{#naturalSortDescL}}text{{/naturalSortAscL}} - descending natural sort lines
-{{#shuffleL}}text{{/shuffleL}} - shuffle lines
+{{#sortDescL}}text{{/sortDescL}} - descending sort lines  
+{{#naturalSortAscL}}text{{/naturalSortAscL}} - ascending natural sort lines  
+{{#naturalSortDescL}}text{{/naturalSortAscL}} - descending natural sort lines  
+{{#shuffleL}}text{{/shuffleL}} - shuffle lines  
 {{#trimL}}text{{/trimL}} - trim lines  
 {{#joinL}}text{{/joinL}} - join lines  
 {{#removeDuplicateL}}text{{/removeDuplicateL}} - remove duplicate lines  
@@ -120,7 +120,7 @@ Templates uses mustache syntaxis but with a few "special tags":
 {{#addEndL|C}}text{{/addEndL|C}} - Add character C at the end each line  
 
 {{#log}}text{{/log}} - write text in console   
-  
+{{#eval}}text{{/eval}} - eval evaluate text as JS code  
 {{#R}}text{{/R}} - render text  
   
 {{#C=|N}}{{/C=|N}} - set counter to N  
