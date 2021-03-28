@@ -5,7 +5,7 @@ Agnostic template engine code generator
 
 (Chicote is a famous Spanish chef)
 
-Chicote need NodeJS to work. Use [mustache.js](https://github.com/janl/mustache.js), [pluralize](https://github.com/plurals/pluralize) and [voca](https://github.com/panzerdp/voca). You don't need install anything, only download code and call cooking.js
+Chicote need NodeJS to work. Use [mustache.js](https://github.com/janl/mustache.js), [pluralize](https://github.com/plurals/pluralize), [voca](https://github.com/panzerdp/voca) and [faker.js](https://github.com/Marak/faker.js). You don't need install anything, only download code and call cooking.js
 
 ```
 node cooking.js
@@ -106,8 +106,11 @@ Templates uses mustache syntaxis but with a few "special tags":
   
 {{#repeat|N}}text{{/repeat2|N}} - repeat text N time  
   
-{{#sortAscL}}text{{/sortAscL}} - sort lines   
-{{#sortDescL}}text{{/sortDescL}} - sort lines  
+{{#sortAscL}}text{{/sortAscL}} - ascending sort lines   
+{{#sortDescL}}text{{/sortDescL}} - descending sort lines 
+{{#naturalSortAscL}}text{{/naturalSortAscL}} - ascending natural sort lines
+{{#naturalSortDescL}}text{{/naturalSortAscL}} - descending natural sort lines
+{{#shuffleL}}text{{/shuffleL}} - shuffle lines
 {{#trimL}}text{{/trimL}} - trim lines  
 {{#joinL}}text{{/joinL}} - join lines  
 {{#removeDuplicateL}}text{{/removeDuplicateL}} - remove duplicate lines  
@@ -214,6 +217,260 @@ slug: helloworld
 count: 10
 countWords: 1
 ```
+{{#faker}}data{{\faker}} - generate a random Faker.js data. 
+
+Data could be any of these keys:
+
+* address
+  * zipCode
+  * zipCodeByState
+  * city
+  * cityPrefix
+  * citySuffix
+  * cityName
+  * streetName
+  * streetAddress
+  * streetSuffix
+  * streetPrefix
+  * secondaryAddress
+  * county
+  * country
+  * countryCode
+  * state
+  * stateAbbr
+  * latitude
+  * longitude
+  * direction
+  * cardinalDirection
+  * ordinalDirection
+  * nearbyGPSCoordinate
+  * timeZone
+* animal
+  * dog
+  * cat
+  * snake
+  * bear
+  * lion
+  * cetacean
+  * horse
+  * bird
+  * cow
+  * fish
+  * crocodilia
+  * insect
+  * rabbit
+  * type
+* commerce
+  * color
+  * department
+  * productName
+  * price
+  * productAdjective
+  * productMaterial
+  * product
+  * productDescription
+* company
+  * suffixes
+  * companyName
+  * companySuffix
+  * catchPhrase
+  * bs
+  * catchPhraseAdjective
+  * catchPhraseDescriptor
+  * catchPhraseNoun
+  * bsAdjective
+  * bsBuzz
+  * bsNoun
+* database
+  * column
+  * type
+  * collation
+  * engine
+* datatype
+  * number
+  * float
+  * datetime
+  * string
+  * uuid
+  * boolean
+  * hexaDecimal
+  * json
+  * array
+* date
+  * past
+  * future
+  * between
+  * betweens
+  * recent
+  * soon
+  * month
+  * weekday
+* fake
+* finance
+  * account
+  * accountName
+  * routingNumber
+  * mask
+  * amount
+  * transactionType
+  * currencyCode
+  * currencyName
+  * currencySymbol
+  * bitcoinAddress
+  * litecoinAddress
+  * creditCardNumber
+  * creditCardCVV
+  * ethereumAddress
+  * iban
+  * bic
+  * transactionDescription
+* git
+  * branch
+  * commitEntry
+  * commitMessage
+  * commitSha
+  * shortSha
+* hacker
+  * abbreviation
+  * adjective
+  * noun
+  * verb
+  * ingverb
+  * phrase
+* helpers
+  * randomize
+  * slugify
+  * replaceSymbolWithNumber
+  * replaceSymbols
+  * replaceCreditCardSymbols
+  * repeatString
+  * regexpStyleStringParse
+  * shuffle
+  * mustache
+  * createCard
+  * contextualCard
+  * userCard
+  * createTransaction
+* image
+  * image
+  * avatar
+  * imageUrl
+  * abstract
+  * animals
+  * business
+  * cats
+  * city
+  * food
+  * nightlife
+  * fashion
+  * people
+  * nature
+  * sports
+  * technics
+  * transport
+  * dataUri
+  * lorempixel
+  * unsplash
+  * lorempicsum
+* internet
+  * avatar
+  * email
+  * exampleEmail
+  * userName
+  * protocol
+  * httpMethod
+  * url
+  * domainName
+  * domainSuffix
+  * domainWord
+  * ip
+  * ipv6
+  * port
+  * userAgent
+  * color
+  * mac
+  * password
+* lorem
+  * word
+  * words
+  * sentence
+  * slug
+  * sentences
+  * paragraph
+  * paragraphs
+  * text
+  * lines
+* mersenne
+  * rand
+  * seed
+  * seed_array
+* music
+  * genre
+* name
+  * firstName
+  * lastName
+  * middleName
+  * findName
+  * jobTitle
+  * gender
+  * prefix
+  * suffix
+  * title
+  * jobDescriptor
+  * jobArea
+  * jobType
+* phone
+  * phoneNumber
+  * phoneNumberFormat
+  * phoneFormats
+* random
+  * number
+  * float
+  * arrayElement
+  * arrayElements
+  * objectElement
+  * uuid
+  * boolean
+  * word
+  * words
+  * image
+  * locale
+  * alpha
+  * alphaNumeric
+  * hexaDecimal
+* system
+  * fileName
+  * commonFileName
+  * mimeType
+  * commonFileType
+  * commonFileExt
+  * fileType
+  * fileExt
+  * directoryPath
+  * filePath
+  * semver
+* time
+  * recent
+* unique
+* vehicle
+  * vehicle
+  * manufacturer
+  * model
+  * type
+  * fuel
+  * vin
+  * color
+  * vrm
+  * bicycle
+
+Example:
+  
+```
+{{#faker}}name.firstname{{\faker}}
+{{#faker}}vehicle.color{{\faker}}
+
+```
+
 
 cookbook.js is a json file works as knowledge database, key value json file.
 
