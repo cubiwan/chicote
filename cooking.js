@@ -5,6 +5,8 @@ var fs = require("fs");
 var path = require("path");
 var Mustache = require("./js/mustache.js");
 
+var faker = require("./js/faker.js");
+
 
 filedata = fs.readFileSync('./js/pluralize.js','utf8');
 var plural = eval(filedata);
@@ -56,8 +58,11 @@ function addTools(input){
 	input["delEmptyL"] = functionToTagAfterRender(delEmptyL);
 	input["sortAscL"] = functionToTagAfterRender(sortAscL);
 	input["sortDescL"] = functionToTagAfterRender(sortDescL);
+	input["naturalSortAscL"] = functionToTagAfterRender(naturalSortAscL);
+	input["naturalSortDescL"] = functionToTagAfterRender(naturalSortDescL);	
+	input["shuffleL"] = functionToTagAfterRender(shuffleL);
 	input["trimL"] = functionToTagAfterRender(trimL);
-	input["joinL"] = functionToTagAfterRender(joinL);
+	input["joinL"] = functionToTagAfterRender(joinL);	
 	input["delDuplicateL"] = functionToTagAfterRender(delDuplicateL);
 	input["spaceL"] = functionToTagAfterRender(spaceL);
 	input["tabL"] = functionToTagAfterRender(tabL);
@@ -81,6 +86,18 @@ function addTools(input){
 	input["C+"] = functionToTagAfterRender(incCounter);
 	input["C-"] = functionToTagAfterRender(decCounter);
 	input["C"] = functionToTagAfterRender(writeCounter);
+
+	input["faker"] = functionToTagAfterRender(fakerFunction);
+
+	input["eval"] = functionToTagAfterRender(evalFunction);
+}
+
+function fakerFunction(text){
+	return eval("faker."+text.trim()+"()");	
+}
+
+function evalFunction(text){
+	return eval(text.trim());	
 }
 
 function resetCounter(text, params){	
@@ -118,6 +135,27 @@ function sortDescL(text){
 	return joinLines(lines);
 }
 
+function naturalSortAscL(text){
+	let lines = getLines(text);
+    lines.sort((left, right) => left.localeCompare(right, undefined, { numeric: true }));
+    return joinLines(lines);
+}
+
+function naturalSortDescL(text){
+	let lines = getLines(text);
+    lines.sort((left, right) => left.localeCompare(right, undefined, { numeric: true }));
+    return joinLines(lines);
+}
+
+function shuffleL(){
+	let lines = getLines(text);
+	for (let i = lines.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[lines[i], lines[j]] = [lines[j], lines[i]];
+	}
+	return joinLines(lines);
+}
+
 function joinL(text){
 	let lines = getLines(text);
 	return lines.join('');
@@ -131,15 +169,13 @@ function trimL(text){
 
 function delDuplicateL(text){
 	let lines = getLines(text);
-	return lines.filter((item, i, allItems) => {
-		return i === allItems.indexOf(item);
-	}).join("\n");
+	Array.from(new Set(lines)).join("\n");
 }
 
 function delEmptyL(text){
 	let lines = getLines(text);
 	return lines.filter((item, i, allItems) => {
-		return item != "";
+		return item.trim() !== "";
 	}).join("\n")+"\n";
 }
 
@@ -190,7 +226,6 @@ function delEnd(text, param){
 function delStart(text, param){
 	return text.substring(param);
 }
-
 
 function addStartL(text, params){	
 	let lines = getLines(text);
