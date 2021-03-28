@@ -42,9 +42,9 @@ Example of recipe.json
 ## Steps
 
 One step is a JSON file in directory "steps" where you prepare ingredients. One step have three parts: vars, directories, templates  
-* vars are variables creates from ingredients. Work similar to ingredients
-* directories indicates directories to output
-* templates, text files in template directory 
+* vars are variables creates from ingredients. Work similar to ingredients.  
+* directories indicates directories to output.  
+* templates, text files in template directory. ["path template", "path output"]  
 
 Example of step
 ```javascript
@@ -81,7 +81,7 @@ Templates are text files in directory "templates" uses mustache syntaxis but wit
 {{year}}
 {{month}}
 {{day}}
-{{year}}
+{{hour}}
 {{minute}}
 {{second}}
 {{GUID}}  
@@ -482,7 +482,7 @@ Example:
 
 ```
 
-{{=AA BB=}} - Change template characters from {{ }} to AA BB  
+{{=AA BB=}} - Change template engine tag characters from {{ }} to AA BB  
 
 ## cookbook.js
 
