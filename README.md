@@ -501,7 +501,7 @@ Example of cookbook.js:
 Example of use:  
 
 ```javascript
-{#K}}{{#lower}}{{type}}{{/lower}}DefaultValue{{/K}}; //with type = "date" search dateDefaulValue in cookbook.js 
+{{#K}}{{#lower}}{{type}}{{/lower}}DefaultValue{{/K}}; //with type = "date" search dateDefaulValue in cookbook.js 
 ```  
 
 ## Diagram      
